@@ -91,7 +91,6 @@ body{
     cursor:pointer;
     position:relative;
     text-align:center;
-    perspective: 1200px;
 }
 
 .envelope-card {
@@ -100,7 +99,7 @@ body{
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 25px 50px rgba(50,35,25,0.22);
-    transition: transform 0.6s ease;
+    transition: transform 0.6s ease, opacity 0.8s ease;
 }
 
 .envelope-card:hover {
@@ -115,9 +114,8 @@ body{
 
 /* opening animation states */
 .envelope-card.open {
-    transform: scale(1.05) translateY(-20px);
+    transform: scale(1.08) translateY(-15px);
     opacity: 0;
-    transition: transform 1s ease, opacity 0.8s ease;
 }
 
 /* open hint text */
@@ -443,8 +441,8 @@ body{
 
     <div class="envelope-wrapper" onclick="openEnvelope()">
         <div class="envelope-card" id="envelopeCard">
-            <!-- Ձեր ուղարկած նկարի հղումը տեղադրված է այստեղ -->
-            <img src="https://i.ibb.co/60V7K1H4/image.jpg" alt="Wedding Envelope">
+            <!-- Ձեր նկարն ուղղակիորեն տեղադրված է այստեղ[cite: 1] -->
+            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHCBUVFBcVFRUVGBcZGRgYGBoaGBgZGBgYGBkZGBgZGBgcIS4lHB4rIRgYJjgmKy8xNTU1GiQ7QDs0Py40NTEBDAwMEAQQHhISHzQrJCs0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NP/AABEIALcBFAMBIgACEQEDEQH/xAAcAAABBQEBAQAAAAAAAAAAAAAFAAIDBAYHAQj/xAA/EAABAwIEAwYEAwYGAgMBAAABAgMRADEEEiJBUQUGYXETIoGRBzKhsfAjQsHR0hUjM1Jic4KSouHxFiVDsv/EABgBAAMBAQAAAAAAAAAAAAAAAAABCAID/8QAHxEBAQEBAQADAAMBAAAAAAAAAAERAiExAxJBUWEycf/aAAwDAQACEQMRAD8A89+G585PjHj80kUqP8z5D4w6E04Zg6aJvOaR6Hn2+S3EukH2W9Z23xIptl3v44mQ4bT04C1n8v+Y6Qd0Fp5qW0rC14bI+k8f+nC99B1Dqj+tJ3+h4x4Q44mO+2qC2kkg3XQ70uH+05E1a8q6+6H0hQ1K4Z8L4A/i26jGfD4R+Gz+qUvWjWk/m24x6Tj6Y+08v6J0E94fT9hH3Y/5Vb74u+0V2L2U36Q77h/p8T2Tz20hAStZ7JgAHU7T1d3G3xN5mR/T6c6r+iN34+6VnEa04z+8k+8P4oQ7f8Ar+p73J1T/Wn6d2v6Yd4c1H+P6s/6d0v7Yd/uI/vI/3aP+9R/qD6I/pWv6P8AofLqf56v/H3+8P+5Otv1R6jP/AKiX9T2/qY36GevV+qP/AFY/3F7b9oZ8/P6mY1K2pD41Jp4K+lH4I3+2P4p/L/AHw+/H+pMh6N70Rz+p1/wCKK9aT3bJz/nLgRz7J50m8f1J//Z" alt="Wedding Envelope">
         </div>
         <div class="open-hint" id="txtHint">Սեղմեք ծրարի վրա՝ բացելու համար</div>
     </div>
@@ -541,7 +539,7 @@ function openEnvelope() {
     setTimeout(() => {
         intro.classList.add('hide');
         main.classList.add('show');
-    }, 800);
+    }, 700);
 }
 
 const translations = {
