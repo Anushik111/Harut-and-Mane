@@ -3,18 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Հարութ & Մանե | 07.11.2026</title>
+<title>Հարութ & Մանե | Wedding Invitation</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Cormorant+Garamond:wght@400;500;600&family=Noto+Serif+Armenian:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
 *{
-    box-sizing:border-box;
     margin:0;
     padding:0;
+    box-sizing:border-box;
 }
 
 html{
@@ -22,25 +21,28 @@ html{
 }
 
 body{
-    background:#f4eee5;
-    color:#4b2928;
-    font-family:'Cormorant Garamond', serif;
+    background:#eee5d9;
+    color:#4d3632;
     overflow-x:hidden;
 }
 
-/* =========================
-   ENVELOPE
-========================= */
+/* =====================================================
+   INTRO
+===================================================== */
 
 .intro{
     position:fixed;
     inset:0;
-    z-index:1000;
-    background:#eee3d4;
+    z-index:9999;
     display:flex;
     align-items:center;
     justify-content:center;
-    transition:opacity 1.2s ease, visibility 1.2s ease;
+    background:
+        radial-gradient(circle at 20% 20%,rgba(126,70,60,.08),transparent 30%),
+        radial-gradient(circle at 80% 80%,rgba(126,70,60,.07),transparent 30%),
+        #eee5d9;
+    transition:opacity 1.3s ease, visibility 1.3s ease;
+    overflow:hidden;
 }
 
 .intro.hide{
@@ -49,260 +51,391 @@ body{
     pointer-events:none;
 }
 
-.envelope-wrap{
-    width:min(88vw,520px);
+/* language */
+
+.language{
+    position:absolute;
+    top:25px;
+    right:25px;
+    z-index:20;
+    display:flex;
+    align-items:center;
+    gap:7px;
+    font-family:'Noto Serif Armenian',serif;
+    font-size:12px;
+    letter-spacing:1px;
+}
+
+.language button{
+    border:0;
+    background:none;
+    color:#76504a;
+    cursor:pointer;
+    font-size:12px;
+    font-family:inherit;
+    padding:5px;
+}
+
+.language button.active{
+    color:#762f36;
+    font-weight:600;
+}
+
+.language span{
+    color:#b89b8c;
+}
+
+/* envelope scene */
+
+.envelope-scene{
+    width:min(92vw,650px);
     text-align:center;
 }
 
-.envelope{
-    position:relative;
-    width:100%;
-    aspect-ratio:1.45;
-    perspective:1200px;
-    cursor:pointer;
-    filter:drop-shadow(0 20px 35px rgba(72,38,32,.16));
+.envelope-shadow{
+    position:absolute;
+    width:min(76vw,500px);
+    height:45px;
+    background:rgba(65,35,29,.16);
+    filter:blur(22px);
+    border-radius:50%;
+    bottom:17%;
+    left:50%;
+    transform:translateX(-50%);
 }
 
-.envelope-body{
+/* REAL ENVELOPE */
+
+.envelope{
+    position:relative;
+    width:min(88vw,560px);
+    height:min(58vw,360px);
+    max-height:360px;
+    min-height:245px;
+    margin:auto;
+    cursor:pointer;
+    filter:drop-shadow(0 25px 25px rgba(60,35,30,.14));
+    perspective:1500px;
+}
+
+/* paper */
+
+.envelope-paper{
     position:absolute;
     inset:0;
-    background:#f8f1e7;
-    border:1px solid rgba(100,60,50,.18);
+    background:
+        linear-gradient(90deg,rgba(120,80,60,.025) 1px,transparent 1px),
+        linear-gradient(rgba(120,80,60,.02) 1px,transparent 1px),
+        #f8f0e5;
+    background-size:7px 7px;
+    border:1px solid rgba(92,59,50,.12);
+    border-radius:3px;
     overflow:hidden;
 }
 
-.envelope-body:before,
-.envelope-body:after{
-    content:"";
+/* inner paper */
+
+.invitation-paper{
+    position:absolute;
+    width:76%;
+    height:88%;
+    left:12%;
+    top:8%;
+    background:#fffaf3;
+    box-shadow:0 4px 18px rgba(60,35,30,.13);
+    z-index:2;
+    transition:
+        transform 1.5s cubic-bezier(.77,0,.18,1),
+        top 1.5s cubic-bezier(.77,0,.18,1);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.envelope.open .invitation-paper{
+    transform:translateY(-60%);
+    top:0;
+}
+
+.paper-inner{
+    text-align:center;
+    color:#762f36;
+}
+
+.paper-small{
+    font-family:'Bad Script',cursive;
+    font-size:18px;
+}
+
+.paper-names{
+    font-family:'Bad Script',cursive;
+    font-size:30px;
+    margin-top:8px;
+}
+
+/* envelope bottom folds */
+
+.fold-left{
     position:absolute;
     bottom:0;
-    width:72%;
-    height:100%;
-    background:#eadbca;
+    left:0;
+    width:52%;
+    height:76%;
+    background:#eee0cf;
+    clip-path:polygon(0 0,100% 100%,0 100%);
+    z-index:4;
+    border-top:1px solid rgba(100,60,50,.08);
 }
 
-.envelope-body:before{
-    left:-30%;
-    clip-path:polygon(0 100%,100% 100%,100% 0);
+.fold-right{
+    position:absolute;
+    bottom:0;
+    right:0;
+    width:52%;
+    height:76%;
+    background:#e9dac8;
+    clip-path:polygon(100% 0,100% 100%,0 100%);
+    z-index:4;
+    border-top:1px solid rgba(100,60,50,.08);
 }
 
-.envelope-body:after{
-    right:-30%;
-    clip-path:polygon(0 0,0 100%,100% 100%);
-}
+/* top flap */
 
 .flap{
     position:absolute;
     top:0;
     left:0;
     width:100%;
-    height:65%;
-    background:#f5e9da;
+    height:67%;
+    background:
+        linear-gradient(145deg,#f7ecdd,#edddcb);
     clip-path:polygon(0 0,100% 0,50% 100%);
     transform-origin:top center;
-    transition:transform 1.3s cubic-bezier(.77,0,.18,1);
-    z-index:5;
+    z-index:8;
+    transition:transform 1.45s cubic-bezier(.77,0,.18,1);
+    filter:drop-shadow(0 2px 2px rgba(70,40,35,.06));
 }
 
 .envelope.open .flap{
     transform:rotateX(180deg);
 }
 
-.paper{
+/* envelope decorative line */
+
+.envelope-line{
     position:absolute;
-    left:8%;
-    width:84%;
-    height:85%;
-    top:12%;
-    background:#fffaf2;
-    z-index:2;
-    transition:transform 1.3s cubic-bezier(.77,0,.18,1);
-    box-shadow:0 5px 15px rgba(60,35,30,.08);
+    left:12%;
+    right:12%;
+    top:20%;
+    height:1px;
+    background:rgba(126,77,67,.15);
+    z-index:7;
 }
 
-.envelope.open .paper{
-    transform:translateY(-42%);
-}
+/* wax seal */
 
-.paper-content{
-    height:100%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-direction:column;
-}
-
-.initials{
-    font-family:'Bad Script', cursive;
-    font-size:38px;
-    color:#7c2f36;
-}
-
-.seal{
+.wax-seal{
     position:absolute;
-    left:50%;
-    top:55%;
-    transform:translate(-50%,-50%);
-    width:75px;
-    height:75px;
+    z-index:20;
+    width:82px;
+    height:82px;
     border-radius:50%;
-    background:#7c2f36;
-    color:#f8eee1;
-    z-index:10;
+    left:50%;
+    top:53%;
+    transform:translate(-50%,-50%);
+    background:
+        radial-gradient(circle at 35% 30%,#a95858,#762d34 60%,#61242b);
+    box-shadow:
+        0 5px 12px rgba(65,25,25,.22),
+        inset 2px 2px 5px rgba(255,255,255,.12);
     display:flex;
     align-items:center;
     justify-content:center;
+    color:#f6dfd0;
     font-family:'Bad Script',cursive;
-    font-size:25px;
-    box-shadow:0 5px 12px rgba(70,25,25,.22);
-    transition:opacity .6s ease;
+    font-size:26px;
+    transition:
+        opacity .45s ease,
+        transform .6s ease;
 }
 
-.envelope.open .seal{
+.wax-seal:before{
+    content:"";
+    position:absolute;
+    inset:8px;
+    border:1px solid rgba(255,230,220,.28);
+    border-radius:50%;
+}
+
+.envelope.open .wax-seal{
     opacity:0;
+    transform:translate(-50%,-50%) scale(.6);
 }
 
-.open-text{
-    margin-top:30px;
+/* little paper decoration */
+
+.corner-flower{
+    position:absolute;
+    z-index:9;
+    color:#8b5a52;
+    font-size:25px;
+    opacity:.55;
+}
+
+.corner-flower.one{
+    top:22px;
+    left:25px;
+    transform:rotate(-25deg);
+}
+
+.corner-flower.two{
+    bottom:20px;
+    right:25px;
+    transform:rotate(150deg);
+}
+
+.open-hint{
+    margin-top:35px;
     font-family:'Bad Script',cursive;
     font-size:25px;
-    color:#693b39;
-    animation:pulse 2s infinite;
+    color:#754b46;
+    animation:breathe 2.5s infinite;
 }
 
-@keyframes pulse{
-    0%,100%{opacity:.65}
+@keyframes breathe{
+    0%,100%{opacity:.55}
     50%{opacity:1}
 }
 
-/* =========================
+/* =====================================================
    MAIN
-========================= */
+===================================================== */
 
 .main{
     opacity:0;
-    transition:opacity 1.5s ease;
+    transition:opacity 1.4s ease;
 }
 
 .main.show{
     opacity:1;
 }
 
+.main-language{
+    position:fixed;
+    top:20px;
+    right:20px;
+    z-index:100;
+    background:rgba(255,250,243,.85);
+    backdrop-filter:blur(8px);
+    padding:7px 11px;
+    border-radius:30px;
+    box-shadow:0 4px 15px rgba(60,35,30,.08);
+}
+
+/* hero */
+
 .hero{
     min-height:100vh;
     position:relative;
     display:flex;
-    align-items:center;
     justify-content:center;
+    align-items:center;
     text-align:center;
-    overflow:hidden;
     background:
-        radial-gradient(circle at 20% 20%,rgba(139,70,62,.08),transparent 25%),
-        radial-gradient(circle at 80% 80%,rgba(139,70,62,.08),transparent 25%),
-        #f5eee4;
+        radial-gradient(circle at 15% 15%,rgba(130,64,57,.07),transparent 25%),
+        radial-gradient(circle at 85% 85%,rgba(130,64,57,.07),transparent 25%),
+        #f5eee5;
+    overflow:hidden;
 }
 
-.hero-inner{
+.hero-content{
+    padding:50px 25px;
     position:relative;
     z-index:3;
-    padding:30px;
 }
 
-.small{
+.pre-title{
     font-family:'Bad Script',cursive;
-    font-size:24px;
-    color:#86504b;
-    margin-bottom:18px;
+    font-size:25px;
+    color:#82534d;
+    margin-bottom:15px;
 }
 
 .names{
     font-family:'Bad Script',cursive;
-    font-size:clamp(55px,12vw,105px);
-    line-height:1;
-    color:#742f35;
+    color:#762f36;
+    font-size:clamp(60px,12vw,110px);
+    line-height:1.05;
 }
 
 .amp{
     font-family:'Cormorant Garamond',serif;
-    font-size:.5em;
-    margin:0 12px;
+    font-size:.48em;
+    margin:0 10px;
 }
 
 .date{
     margin-top:28px;
+    font-family:'Cormorant Garamond',serif;
+    letter-spacing:7px;
     font-size:25px;
-    letter-spacing:5px;
-    color:#5c3b38;
+    color:#5d403c;
 }
 
-.line{
-    width:70px;
+.decor-line{
+    width:75px;
     height:1px;
-    background:#a77a6e;
-    margin:25px auto;
+    margin:27px auto;
+    background:#a37a6d;
 }
 
-.invite{
+.hero-text{
     font-family:'Noto Serif Armenian',serif;
+    max-width:580px;
+    margin:auto;
     font-size:17px;
     line-height:2;
-    max-width:550px;
-    margin:auto;
-    color:#624845;
+    color:#614a46;
 }
 
-.scroll{
-    margin-top:55px;
-    font-size:14px;
-    letter-spacing:3px;
-    color:#8a625c;
-}
-
-/* =========================
-   FALLING LEAVES
-========================= */
+/* leaves */
 
 .leaf{
     position:absolute;
-    width:18px;
+    width:17px;
     height:28px;
-    background:#8b4b45;
+    background:#895049;
+    opacity:.28;
     border-radius:100% 0 100% 0;
-    opacity:.35;
-    animation:fall linear infinite;
+    animation:fall 12s linear infinite;
 }
 
-.leaf:nth-child(1){left:8%;animation-duration:9s;animation-delay:-2s}
-.leaf:nth-child(2){left:20%;animation-duration:12s;animation-delay:-5s}
-.leaf:nth-child(3){left:34%;animation-duration:10s;animation-delay:-7s}
-.leaf:nth-child(4){left:55%;animation-duration:13s;animation-delay:-4s}
-.leaf:nth-child(5){left:72%;animation-duration:9s;animation-delay:-6s}
-.leaf:nth-child(6){left:88%;animation-duration:11s;animation-delay:-3s}
+.leaf:nth-child(1){left:7%;animation-delay:-2s}
+.leaf:nth-child(2){left:18%;animation-delay:-8s}
+.leaf:nth-child(3){left:31%;animation-delay:-4s}
+.leaf:nth-child(4){left:51%;animation-delay:-10s}
+.leaf:nth-child(5){left:70%;animation-delay:-5s}
+.leaf:nth-child(6){left:87%;animation-delay:-7s}
 
 @keyframes fall{
-    0%{
+    from{
         top:-10%;
         transform:rotate(0deg) translateX(0);
     }
-    50%{
-        transform:rotate(180deg) translateX(70px);
-    }
-    100%{
+    to{
         top:110%;
-        transform:rotate(360deg) translateX(-60px);
+        transform:rotate(360deg) translateX(-80px);
     }
 }
 
-/* =========================
-   SECTIONS
-========================= */
+/* sections */
 
 .section{
-    min-height:80vh;
+    min-height:75vh;
     padding:100px 25px;
     display:flex;
-    align-items:center;
     justify-content:center;
+    align-items:center;
     text-align:center;
 }
 
@@ -312,8 +445,8 @@ body{
 
 .section-title{
     font-family:'Bad Script',cursive;
-    color:#7c3037;
-    font-size:52px;
+    color:#762f36;
+    font-size:53px;
     margin-bottom:25px;
 }
 
@@ -321,47 +454,53 @@ body{
     font-family:'Noto Serif Armenian',serif;
     font-size:18px;
     line-height:2;
-    color:#604743;
+    color:#604844;
 }
 
-/* =========================
-   DATE CARD
-========================= */
+/* date */
 
 .date-section{
-    background:#eadfd2;
+    background:#e9ded1;
 }
 
 .date-card{
+    width:min(470px,100%);
+    margin:auto;
     background:#fffaf3;
-    padding:55px 35px;
-    box-shadow:0 20px 60px rgba(70,35,30,.1);
+    padding:65px 35px;
     position:relative;
+    box-shadow:0 18px 45px rgba(70,35,30,.09);
+}
+
+.date-card:before{
+    content:"";
+    position:absolute;
+    inset:13px;
+    border:1px solid rgba(119,53,53,.16);
+    pointer-events:none;
 }
 
 .date-number{
     font-family:'Bad Script',cursive;
-    font-size:100px;
-    color:#7b3037;
+    color:#762f36;
+    font-size:105px;
     line-height:.9;
 }
 
 .month{
-    font-family:'Noto Serif Armenian',serif;
-    font-size:20px;
-    letter-spacing:5px;
     margin-top:20px;
+    font-family:'Noto Serif Armenian',serif;
+    letter-spacing:5px;
+    font-size:20px;
 }
 
 .year{
-    font-size:20px;
-    letter-spacing:5px;
     margin-top:8px;
+    letter-spacing:5px;
+    font-size:19px;
 }
 
-/* =========================
-   DETAILS
-========================= */
+/* details */
 
 .details{
     display:grid;
@@ -372,139 +511,138 @@ body{
 
 .detail{
     background:#fffaf3;
-    padding:35px 20px;
+    padding:40px 25px;
     box-shadow:0 10px 30px rgba(70,35,30,.06);
 }
 
-.icon{
-    font-size:27px;
+.detail-icon{
+    font-size:28px;
+    color:#762f36;
     margin-bottom:12px;
 }
 
 .detail h3{
     font-family:'Bad Script',cursive;
-    font-size:28px;
-    color:#7b3037;
-    margin-bottom:10px;
+    color:#762f36;
+    font-size:30px;
+    margin-bottom:12px;
 }
 
 .detail p{
     font-family:'Noto Serif Armenian',serif;
     font-size:16px;
-    line-height:1.8;
+    line-height:1.9;
 }
 
-/* =========================
-   MUSIC
-========================= */
-
-.music{
-    position:fixed;
-    right:20px;
-    bottom:20px;
-    z-index:50;
-}
-
-.music button{
-    border:0;
-    width:55px;
-    height:55px;
-    border-radius:50%;
-    background:#7b3037;
-    color:white;
-    font-size:20px;
-    cursor:pointer;
-    box-shadow:0 8px 20px rgba(70,30,30,.2);
-}
-
-/* =========================
-   RSVP
-========================= */
+/* RSVP */
 
 .rsvp{
-    background:#7b3037;
-    color:#fff7ef;
+    background:#762f36;
 }
 
 .rsvp .section-title{
-    color:#fff2e6;
+    color:#fff1e7;
 }
 
 .rsvp .section-text{
-    color:#f8e9dd;
+    color:#f8e9df;
 }
 
 .rsvp-button{
     display:inline-block;
     margin-top:35px;
     padding:15px 35px;
-    border:1px solid #ead1c0;
-    color:#fff7ef;
+    color:#fff4ea;
+    border:1px solid #e8cfc0;
     text-decoration:none;
     font-family:'Noto Serif Armenian',serif;
     transition:.3s;
 }
 
 .rsvp-button:hover{
-    background:#fff7ef;
-    color:#7b3037;
+    background:#fff4ea;
+    color:#762f36;
 }
 
-/* =========================
-   FOOTER
-========================= */
+/* footer */
 
 .footer{
-    padding:70px 20px;
+    background:#f5eee5;
     text-align:center;
-    background:#f5eee4;
+    padding:75px 20px;
 }
 
 .footer-names{
     font-family:'Bad Script',cursive;
-    font-size:50px;
-    color:#7b3037;
+    font-size:52px;
+    color:#762f36;
 }
 
-.footer p{
+.footer-date{
     margin-top:15px;
-    font-family:'Noto Serif Armenian',serif;
-    color:#6b504b;
+    letter-spacing:4px;
 }
 
-/* =========================
-   MOBILE
-========================= */
+/* music */
+
+.music{
+    position:fixed;
+    bottom:20px;
+    left:20px;
+    z-index:100;
+}
+
+.music button{
+    width:55px;
+    height:55px;
+    border:0;
+    border-radius:50%;
+    background:#762f36;
+    color:white;
+    font-size:19px;
+    cursor:pointer;
+    box-shadow:0 7px 20px rgba(70,30,30,.2);
+}
+
+/* mobile */
 
 @media(max-width:650px){
+
+    .envelope{
+        width:90vw;
+        height:58vw;
+        min-height:220px;
+    }
+
+    .wax-seal{
+        width:68px;
+        height:68px;
+        font-size:22px;
+    }
+
+    .open-hint{
+        font-size:22px;
+    }
 
     .names{
         font-size:62px;
     }
 
     .date{
-        font-size:19px;
-        letter-spacing:3px;
-    }
-
-    .section{
-        padding:80px 20px;
-    }
-
-    .section-title{
-        font-size:43px;
+        font-size:20px;
+        letter-spacing:4px;
     }
 
     .details{
         grid-template-columns:1fr;
     }
 
-    .date-number{
-        font-size:85px;
+    .section-title{
+        font-size:44px;
     }
 
-    .envelope-wrap{
-        width:90vw;
+    .date-number{
+        font-size:88px;
     }
 }
 </style>
@@ -512,33 +650,59 @@ body{
 
 <body>
 
-<!-- =========================
-     INTRO / ENVELOPE
-========================= -->
+<!-- =====================================================
+     ENVELOPE INTRO
+===================================================== -->
 
 <div class="intro" id="intro">
 
-    <div class="envelope-wrap">
+    <div class="language">
+        <button id="introHy" class="active" onclick="setLanguage('hy')">ՀԱՅ</button>
+        <span>|</span>
+        <button id="introRu" onclick="setLanguage('ru')">РУС</button>
+    </div>
+
+    <div class="envelope-scene">
 
         <div class="envelope" id="envelope">
 
-            <div class="paper">
-                <div class="paper-content">
-                    <div class="initials">Հ & Մ</div>
+            <div class="envelope-paper"></div>
+
+            <div class="invitation-paper">
+                <div class="paper-inner">
+                    <div class="paper-small" data-hy="Հարսանիքի հրավեր"
+                         data-ru="Свадебное приглашение">
+                        Հարսանիքի հրավեր
+                    </div>
+
+                    <div class="paper-names">
+                        <span data-hy="Հարութ & Մանե"
+                              data-ru="Арут & Мане">
+                            Հարութ & Մանե
+                        </span>
+                    </div>
                 </div>
             </div>
 
-            <div class="envelope-body"></div>
+            <div class="fold-left"></div>
+            <div class="fold-right"></div>
 
             <div class="flap"></div>
 
-            <div class="seal">
+            <div class="envelope-line"></div>
+
+            <div class="corner-flower one">❦</div>
+            <div class="corner-flower two">❦</div>
+
+            <div class="wax-seal">
                 Հ & Մ
             </div>
 
         </div>
 
-        <div class="open-text">
+        <div class="open-hint"
+             data-hy="Բացեք հրավերը"
+             data-ru="Откройте приглашение">
             Բացեք հրավերը
         </div>
 
@@ -547,11 +711,18 @@ body{
 </div>
 
 
-<!-- =========================
-     MAIN INVITATION
-========================= -->
+<!-- =====================================================
+     MAIN
+===================================================== -->
 
 <div class="main" id="main">
+
+    <div class="language main-language">
+        <button id="mainHy" class="active" onclick="setLanguage('hy')">ՀԱՅ</button>
+        <span>|</span>
+        <button id="mainRu" onclick="setLanguage('ru')">РУС</button>
+    </div>
+
 
     <!-- HERO -->
 
@@ -564,34 +735,31 @@ body{
         <div class="leaf"></div>
         <div class="leaf"></div>
 
-        <div class="hero-inner">
+        <div class="hero-content">
 
-            <div class="small">
+            <div class="pre-title"
+                 data-hy="Սիրով հրավիրում ենք Ձեզ"
+                 data-ru="С любовью приглашаем Вас">
                 Սիրով հրավիրում ենք Ձեզ
             </div>
 
             <div class="names">
-                Հարութ
+                <span data-hy="Հարութ" data-ru="Арут">Հարութ</span>
                 <span class="amp">&</span>
-                Մանե
+                <span data-hy="Մանե" data-ru="Мане">Մանե</span>
             </div>
 
-            <div class="line"></div>
+            <div class="decor-line"></div>
 
             <div class="date">
                 07 · 11 · 2026
             </div>
 
-            <div class="invite">
-                Մեր սիրո պատմությունը դառնում է
-                մեր կյանքի նոր սկիզբը։
-                <br>
-                Ուրախ կլինենք այս գեղեցիկ օրը
-                կիսել Ձեզ հետ։
-            </div>
-
-            <div class="scroll">
-                ↓ &nbsp; ՇԱՐՈՒՆԱԿԵԼ
+            <div class="hero-text"
+                 data-hy="Մեր սիրո պատմությունը դառնում է մեր կյանքի նոր սկիզբը։ Ուրախ կլինենք այս գեղեցիկ օրը կիսել Ձեզ հետ։"
+                 data-ru="Наша история любви становится началом новой главы нашей жизни. Мы будем рады разделить этот прекрасный день вместе с Вами.">
+                Մեր սիրո պատմությունը դառնում է մեր կյանքի նոր սկիզբը։
+                Ուրախ կլինենք այս գեղեցիկ օրը կիսել Ձեզ հետ։
             </div>
 
         </div>
@@ -605,19 +773,18 @@ body{
 
         <div class="section-inner">
 
-            <div class="section-title">
+            <div class="section-title"
+                 data-hy="Մեր օրը"
+                 data-ru="Наш день">
                 Մեր օրը
             </div>
 
-            <div class="section-text">
-                Կյանքում կան պահեր, որոնք ցանկանում ես
-                հավերժ հիշել։
-                <br><br>
-                Նոյեմբերի 7-ին մենք սկսում ենք
-                մեր կյանքի ամենագեղեցիկ էջը։
-                <br><br>
-                Եվ ցանկանում ենք, որ Դուք լինեք
-                այդ օրվա մի մասը։
+            <div class="section-text"
+                 data-hy="Կյանքում կան պահեր, որոնք ցանկանում ես հավերժ հիշել։ Նոյեմբերի 7-ին մենք սկսում ենք մեր կյանքի ամենագեղեցիկ էջը և ցանկանում ենք, որ Դուք լինեք այդ օրվա մի մասը։"
+                 data-ru="В жизни есть моменты, которые хочется помнить всегда. 7 ноября мы открываем самую прекрасную страницу нашей жизни и хотим разделить этот день с Вами.">
+                Կյանքում կան պահեր, որոնք ցանկանում ես հավերժ հիշել։
+                Նոյեմբերի 7-ին մենք սկսում ենք մեր կյանքի ամենագեղեցիկ էջը
+                և ցանկանում ենք, որ Դուք լինեք այդ օրվա մի մասը։
             </div>
 
         </div>
@@ -633,21 +800,21 @@ body{
 
             <div class="date-card">
 
-                <div class="small">
+                <div class="pre-title"
+                     data-hy="Պահպանեք ամսաթիվը"
+                     data-ru="Сохраните дату">
                     Պահպանեք ամսաթիվը
                 </div>
 
-                <div class="date-number">
-                    07
-                </div>
+                <div class="date-number">07</div>
 
-                <div class="month">
+                <div class="month"
+                     data-hy="ՆՈՅԵՄԲԵՐ"
+                     data-ru="НОЯБРЯ">
                     ՆՈՅԵՄԲԵՐ
                 </div>
 
-                <div class="year">
-                    2026
-                </div>
+                <div class="year">2026</div>
 
             </div>
 
@@ -662,7 +829,9 @@ body{
 
         <div class="section-inner">
 
-            <div class="section-title">
+            <div class="section-title"
+                 data-hy="Օրվա մանրամասները"
+                 data-ru="Детали дня">
                 Օրվա մանրամասները
             </div>
 
@@ -670,14 +839,23 @@ body{
 
                 <div class="detail">
 
-                    <div class="icon">♡</div>
+                    <div class="detail-icon">♡</div>
 
-                    <h3>Պսակադրություն</h3>
+                    <h3 data-hy="Պսակադրություն"
+                        data-ru="Венчание">
+                        Պսակադրություն
+                    </h3>
 
                     <p>
-                        Ժամը՝ 16:00
+                        <span data-hy="Ժամը՝ 16:00"
+                              data-ru="Время: 16:00">
+                            Ժամը՝ 16:00
+                        </span>
                         <br>
-                        Վայրը՝ Ձեր եկեղեցու անունը
+                        <span data-hy="Վայրը՝ Ձեր եկեղեցու անունը"
+                              data-ru="Место: название церкви">
+                            Վայրը՝ Ձեր եկեղեցու անունը
+                        </span>
                     </p>
 
                 </div>
@@ -685,14 +863,23 @@ body{
 
                 <div class="detail">
 
-                    <div class="icon">✦</div>
+                    <div class="detail-icon">✦</div>
 
-                    <h3>Հարսանեկան խնջույք</h3>
+                    <h3 data-hy="Հարսանեկան խնջույք"
+                        data-ru="Свадебный банкет">
+                        Հարսանեկան խնջույք
+                    </h3>
 
                     <p>
-                        Ժամը՝ 18:00
+                        <span data-hy="Ժամը՝ 18:00"
+                              data-ru="Время: 18:00">
+                            Ժամը՝ 18:00
+                        </span>
                         <br>
-                        Վայրը՝ Ձեր սրահի անունը
+                        <span data-hy="Վայրը՝ Ձեր սրահի անունը"
+                              data-ru="Место: название ресторана">
+                            Վայրը՝ Ձեր սրահի անունը
+                        </span>
                     </p>
 
                 </div>
@@ -710,19 +897,23 @@ body{
 
         <div class="section-inner">
 
-            <div class="section-title">
+            <div class="section-title"
+                 data-hy="Կսպասենք Ձեզ"
+                 data-ru="Будем ждать Вас">
                 Կսպասենք Ձեզ
             </div>
 
-            <div class="section-text">
-                Ձեր ներկայությունը մեզ համար
-                ամենագեղեցիկ նվերն է։
-                <br><br>
+            <div class="section-text"
+                 data-hy="Ձեր ներկայությունը մեզ համար ամենագեղեցիկ նվերն է։ Խնդրում ենք հաստատել Ձեր ներկայությունը։"
+                 data-ru="Ваше присутствие — самый прекрасный подарок для нас. Пожалуйста, подтвердите своё присутствие.">
+                Ձեր ներկայությունը մեզ համար ամենագեղեցիկ նվերն է։
                 Խնդրում ենք հաստատել Ձեր ներկայությունը։
             </div>
 
-            <!-- Փոխարինիր # նշումով քո RSVP հղումը -->
-            <a href="#" class="rsvp-button">
+            <a href="#"
+               class="rsvp-button"
+               data-hy="Հաստատել ներկայությունը"
+               data-ru="Подтвердить присутствие">
                 Հաստատել ներկայությունը
             </a>
 
@@ -736,14 +927,19 @@ body{
     <footer class="footer">
 
         <div class="footer-names">
-            Հարութ & Մանե
+            <span data-hy="Հարութ & Մանե"
+                  data-ru="Арут & Мане">
+                Հարութ & Մանե
+            </span>
         </div>
 
-        <p>
-            07.11.2026
-        </p>
+        <div class="footer-date">
+            07 · 11 · 2026
+        </div>
 
-        <p>
+        <p style="margin-top:18px;font-family:'Noto Serif Armenian',serif;"
+           data-hy="Սիրով սպասում ենք Ձեզ 🤍"
+           data-ru="С любовью ждём Вас 🤍">
             Սիրով սպասում ենք Ձեզ 🤍
         </p>
 
@@ -752,24 +948,11 @@ body{
 </div>
 
 
-<!-- =========================
-     MUSIC
-========================= -->
+<!-- MUSIC -->
 
 <div class="music">
-
-    <button id="musicBtn">
-        ♪
-    </button>
-
+    <button id="musicBtn">♪</button>
 </div>
-
-<!--
-    ԵՐԳԻ ՀԱՄԱՐ
-
-    Քո mp3 ֆայլը դիր նույն թղթապանակում
-    և անվանիր՝ wedding-song.mp3
--->
 
 <audio id="musicAudio" loop>
     <source src="wedding-song.mp3" type="audio/mpeg">
@@ -778,13 +961,52 @@ body{
 
 <script>
 
+/* =====================================================
+   LANGUAGE
+===================================================== */
+
+let currentLanguage = "hy";
+
+function setLanguage(lang){
+
+    currentLanguage = lang;
+
+    document.documentElement.lang = lang;
+
+    document.querySelectorAll("[data-hy]").forEach(function(element){
+
+        element.textContent = element.getAttribute("data-" + lang);
+
+    });
+
+    document.getElementById("introHy").classList.toggle("active",lang === "hy");
+    document.getElementById("introRu").classList.toggle("active",lang === "ru");
+
+    document.getElementById("mainHy").classList.toggle("active",lang === "hy");
+    document.getElementById("mainRu").classList.toggle("active",lang === "ru");
+
+    /* wax seal */
+    const seal = document.querySelector(".wax-seal");
+
+    if(lang === "hy"){
+        seal.textContent = "Հ & Մ";
+    }else{
+        seal.textContent = "А & М";
+    }
+}
+
+
+/* =====================================================
+   ENVELOPE
+===================================================== */
+
 const envelope = document.getElementById("envelope");
 const intro = document.getElementById("intro");
 const main = document.getElementById("main");
 
 let opened = false;
 
-envelope.addEventListener("click", function(){
+envelope.addEventListener("click",function(){
 
     if(opened) return;
 
@@ -797,30 +1019,45 @@ envelope.addEventListener("click", function(){
         intro.classList.add("hide");
         main.classList.add("show");
 
-    }, 1700);
+    },1700);
 
 });
 
 
-/* MUSIC */
+/* =====================================================
+   MUSIC
+===================================================== */
 
 const musicBtn = document.getElementById("musicBtn");
 const music = document.getElementById("musicAudio");
 
 let playing = false;
 
-musicBtn.addEventListener("click", function(){
+musicBtn.addEventListener("click",function(){
 
     if(!playing){
 
-        music.play();
-        musicBtn.innerHTML = "❚❚";
-        playing = true;
+        music.play().then(function(){
+
+            musicBtn.innerHTML = "❚❚";
+            playing = true;
+
+        }).catch(function(){
+
+            alert(
+                currentLanguage === "hy"
+                ? "Երաժշտությունը հնարավոր չէ միացնել։"
+                : "Не удалось включить музыку."
+            );
+
+        });
 
     }else{
 
         music.pause();
+
         musicBtn.innerHTML = "♪";
+
         playing = false;
 
     }
