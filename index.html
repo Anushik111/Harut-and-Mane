@@ -28,7 +28,7 @@ body{
 }
 
 /* =====================================================
-   INTRO (SHIX / LUXURY ENVELOPE)
+   INTRO (IMAGE ENVELOPE)
 ===================================================== */
 
 .intro{
@@ -39,8 +39,8 @@ body{
     flex-direction:column;
     align-items:center;
     justify-content:center;
-    background:#eae2d5;
-    transition:opacity 1.4s ease, visibility 1.4s ease;
+    background:#e6dfd5;
+    transition:opacity 1.2s ease, visibility 1.2s ease;
     overflow:hidden;
 }
 
@@ -84,174 +84,50 @@ body{
     color:#b89b8c;
 }
 
-/* envelope wrapper */
+/* envelope container */
 
-.envelope-scene{
-    width:min(90vw, 520px);
+.envelope-wrapper{
+    width:min(90vw, 550px);
     cursor:pointer;
     position:relative;
-    filter: drop-shadow(0 20px 30px rgba(60,40,30,0.18));
-}
-
-.envelope{
-    position:relative;
-    width:100%;
-    aspect-ratio: 1.42 / 1;
-    background: #fbf8f2;
-    border-radius: 6px;
-    overflow: hidden;
-    border: 1px solid rgba(180, 160, 140, 0.3);
-}
-
-/* paper sliding out */
-
-.invitation-paper{
-    position:absolute;
-    width:84%;
-    height:90%;
-    left:8%;
-    top:5%;
-    background:#ffffff;
-    border: 1px solid rgba(150,120,90,0.15);
-    box-shadow: 0 5px 20px rgba(60,40,30,0.08);
-    z-index:1;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    transition: transform 1.6s cubic-bezier(.77,0,.18,1), top 1.6s cubic-bezier(.77,0,.18,1);
-}
-
-.envelope.open .invitation-paper{
-    transform: translateY(-58%);
-    top: 0;
-}
-
-.paper-inner{
     text-align:center;
-    color:#5a3832;
-    padding: 20px;
+    perspective: 1200px;
 }
 
-.paper-small{
-    font-family:'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 17px;
-    letter-spacing: 2px;
-    color:#8c625b;
+.envelope-card {
+    position: relative;
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px rgba(50,35,25,0.22);
+    transition: transform 0.6s ease;
 }
 
-.paper-names{
-    font-family:'Cormorant Garamond', serif;
-    font-size: 32px;
-    font-weight: 600;
-    margin-top: 10px;
-    color:#4a2822;
-    letter-spacing: 1px;
+.envelope-card:hover {
+    transform: scale(1.02);
 }
 
-/* envelope folds */
-
-.fold-bottom{
-    position:absolute;
-    bottom:0;
-    left:0;
-    width:100%;
-    height:58%;
-    background: #f3ece1;
-    clip-path: polygon(0 100%, 50% 12%, 100% 100%);
-    z-index: 3;
-    border-top: 1px solid rgba(150,120,100,0.12);
+.envelope-card img {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
-.fold-left{
-    position:absolute;
-    bottom:0;
-    left:0;
-    width:55%;
-    height:100%;
-    background: #f7f1e7;
-    clip-path: polygon(0 0, 0 100%, 100% 100%);
-    z-index: 2;
-}
-
-.fold-right{
-    position:absolute;
-    bottom:0;
-    right:0;
-    width:55%;
-    height:100%;
-    background: #efe7db;
-    clip-path: polygon(100% 0, 0 100%, 100% 100%);
-    z-index: 2;
-}
-
-/* top flap */
-
-.flap{
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:56%;
-    background: #f4ece1;
-    clip-path: polygon(0 0, 100% 0, 50% 100%);
-    transform-origin: top center;
-    z-index: 5;
-    transition: transform 1.3s cubic-bezier(.77,0,.18,1);
-    border-bottom: 1px solid rgba(150,120,100,0.1);
-}
-
-.envelope.open .flap{
-    transform: rotateX(180deg);
-    z-index: 0;
-}
-
-/* golden wax seal */
-
-.wax-seal{
-    position:absolute;
-    z-index:25;
-    width:74px;
-    height:74px;
-    border-radius:50%;
-    left:50%;
-    top:51%;
-    transform:translate(-50%,-50%);
-    background: radial-gradient(circle at 35% 30%, #ffefb8, #e0be43 55%, #9c7512);
-    box-shadow: 0 6px 18px rgba(70,50,10,0.3), inset 2px 2px 5px rgba(255,255,255,0.6);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#4a3505;
-    font-family:'Cormorant Garamond', serif;
-    font-weight: 600;
-    font-size: 34px;
-    transition: opacity .4s ease, transform .5s ease;
-}
-
-.wax-seal::before{
-    content:"";
-    position:absolute;
-    inset:6px;
-    border:1px solid rgba(74,53,5,0.35);
-    border-radius:50%;
-}
-
-.envelope.open .wax-seal{
-    opacity:0;
-    transform:translate(-50%,-50%) scale(0.4);
-    pointer-events: none;
+/* opening animation states */
+.envelope-card.open {
+    transform: scale(1.05) translateY(-20px);
+    opacity: 0;
+    transition: transform 1s ease, opacity 0.8s ease;
 }
 
 /* open hint text */
 
 .open-hint{
-    margin-top: 32px;
+    margin-top: 30px;
     font-family:'Bad Script',cursive;
     font-size: 24px;
     color: #6b4540;
     animation: breathe 2.5s infinite;
-    text-align: center;
 }
 
 @keyframes breathe{
@@ -565,25 +441,13 @@ body{
         <button id="introRu" onclick="setLanguage('ru')">РУՍ</button>
     </div>
 
-    <div class="envelope-scene" id="envelopeScene" onclick="openEnvelope()">
-        <div class="envelope" id="envelope">
-            <div class="invitation-paper">
-                <div class="paper-inner">
-                    <div class="paper-small" id="txtCardSub">Հարսանեկան Հրավեր</div>
-                    <div class="paper-names">Հարութ & Մանե</div>
-                </div>
-            </div>
-            
-            <div class="fold-left"></div>
-            <div class="fold-right"></div>
-            <div class="fold-bottom"></div>
-            <div class="flap"></div>
-            
-            <div class="wax-seal">M</div>
+    <div class="envelope-wrapper" onclick="openEnvelope()">
+        <div class="envelope-card" id="envelopeCard">
+            <!-- Ձեր ուղարկած նկարի հղումը տեղադրված է այստեղ -->
+            <img src="https://i.ibb.co/60V7K1H4/image.jpg" alt="Wedding Envelope">
         </div>
+        <div class="open-hint" id="txtHint">Սեղմեք ծրարի վրա՝ բացելու համար</div>
     </div>
-    
-    <div class="open-hint" id="txtHint">Սեղմեք ծրարի վրա՝ բացելու համար</div>
 </div>
 
 
@@ -668,7 +532,7 @@ body{
 
 <script>
 function openEnvelope() {
-    const envelope = document.getElementById('envelope');
+    const envelope = document.getElementById('envelopeCard');
     const intro = document.getElementById('intro');
     const main = document.getElementById('mainContent');
 
@@ -677,12 +541,11 @@ function openEnvelope() {
     setTimeout(() => {
         intro.classList.add('hide');
         main.classList.add('show');
-    }, 1200);
+    }, 800);
 }
 
 const translations = {
     hy: {
-        cardSub: "Հարսանեկան Հրավեր",
         hint: "Սեղմեք ծրարի վրա՝ բացելու համար",
         heroPre: "Հարսանեկան Հրավեր",
         heroText: "Սիրով հրավիրում ենք ձեզ կիսելու մեզ հետ մեր կյանքի ամենակարևոր և երջանիկ պահերից մեկը:",
@@ -701,7 +564,6 @@ const translations = {
         btnSubmit: "Ուղարկել"
     },
     ru: {
-        cardSub: "Свадебное Приглашение",
         hint: "Нажмите на конверт, чтобы открыть",
         heroPre: "Свадебное Приглашение",
         heroText: "С радостью приглашаем вас разделить с нами один из самых важных и счастливых моментов нашей жизни.",
@@ -728,7 +590,6 @@ function setLanguage(lang) {
     document.getElementById('mainRu').classList.toggle('active', lang === 'ru');
 
     const t = translations[lang];
-    document.getElementById('txtCardSub').innerText = t.cardSub;
     document.getElementById('txtHint').innerText = t.hint;
     document.getElementById('txtHeroPre').innerText = t.heroPre;
     document.getElementById('txtHeroText').innerText = t.heroText;
