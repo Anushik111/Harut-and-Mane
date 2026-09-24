@@ -7,7 +7,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Cormorant+Garamond:wght@400;500;600&family=Noto+Serif+Armenian:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Serif+Armenian:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
 *{
@@ -21,14 +21,14 @@ html{
 }
 
 body{
-    background:#eee5d9;
+    background:#f4efe6;
     color:#4d3632;
     overflow-x:hidden;
     overflow-y:auto;
 }
 
 /* =====================================================
-   INTRO
+   INTRO (SHIX / LUXURY ENVELOPE)
 ===================================================== */
 
 .intro{
@@ -39,8 +39,8 @@ body{
     flex-direction:column;
     align-items:center;
     justify-content:center;
-    background:#e5dbcc;
-    transition:opacity 1.3s ease, visibility 1.3s ease;
+    background:#eae2d5;
+    transition:opacity 1.4s ease, visibility 1.4s ease;
     overflow:hidden;
 }
 
@@ -56,7 +56,7 @@ body{
     position:absolute;
     top:25px;
     right:25px;
-    z-index:20;
+    z-index:30;
     display:flex;
     align-items:center;
     gap:7px;
@@ -84,68 +84,69 @@ body{
     color:#b89b8c;
 }
 
-/* envelope scene */
+/* envelope wrapper */
 
 .envelope-scene{
-    width:min(92vw,560px);
-    text-align:center;
+    width:min(90vw, 520px);
     cursor:pointer;
     position:relative;
+    filter: drop-shadow(0 20px 30px rgba(60,40,30,0.18));
 }
-
-/* REAL ENVELOPE */
 
 .envelope{
     position:relative;
     width:100%;
-    aspect-ratio: 1.4 / 1;
-    background: #f4ede1;
-    border-radius: 4px;
-    box-shadow: 0 20px 40px rgba(60,35,30,0.15);
+    aspect-ratio: 1.42 / 1;
+    background: #fbf8f2;
+    border-radius: 6px;
     overflow: hidden;
-    transition: transform 0.6s ease;
+    border: 1px solid rgba(180, 160, 140, 0.3);
 }
 
-.envelope:hover{
-    transform: scale(1.01);
-}
-
-/* paper inside */
+/* paper sliding out */
 
 .invitation-paper{
     position:absolute;
-    width:82%;
-    height:86%;
-    left:9%;
-    top:7%;
-    background:#fffaf3;
-    box-shadow:0 4px 18px rgba(60,35,30,0.1);
+    width:84%;
+    height:90%;
+    left:8%;
+    top:5%;
+    background:#ffffff;
+    border: 1px solid rgba(150,120,90,0.15);
+    box-shadow: 0 5px 20px rgba(60,40,30,0.08);
     z-index:1;
     display:flex;
     align-items:center;
     justify-content:center;
-    transition: transform 1.4s cubic-bezier(.77,0,.18,1), top 1.4s cubic-bezier(.77,0,.18,1);
+    transition: transform 1.6s cubic-bezier(.77,0,.18,1), top 1.6s cubic-bezier(.77,0,.18,1);
 }
 
 .envelope.open .invitation-paper{
-    transform: translateY(-55%);
+    transform: translateY(-58%);
     top: 0;
 }
 
 .paper-inner{
     text-align:center;
-    color:#762f36;
+    color:#5a3832;
+    padding: 20px;
 }
 
 .paper-small{
-    font-family:'Bad Script',cursive;
-    font-size:16px;
+    font-family:'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 17px;
+    letter-spacing: 2px;
+    color:#8c625b;
 }
 
 .paper-names{
-    font-family:'Bad Script',cursive;
-    font-size:26px;
-    margin-top:6px;
+    font-family:'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 600;
+    margin-top: 10px;
+    color:#4a2822;
+    letter-spacing: 1px;
 }
 
 /* envelope folds */
@@ -155,20 +156,20 @@ body{
     bottom:0;
     left:0;
     width:100%;
-    height:55%;
-    background: #efe6d8;
-    clip-path: polygon(0 100%, 50% 20%, 100% 100%);
+    height:58%;
+    background: #f3ece1;
+    clip-path: polygon(0 100%, 50% 12%, 100% 100%);
     z-index: 3;
-    border-top: 1px solid rgba(120,80,60,0.06);
+    border-top: 1px solid rgba(150,120,100,0.12);
 }
 
 .fold-left{
     position:absolute;
     bottom:0;
     left:0;
-    width:55% ;
+    width:55%;
     height:100%;
-    background: #f1eae0;
+    background: #f7f1e7;
     clip-path: polygon(0 0, 0 100%, 100% 100%);
     z-index: 2;
 }
@@ -179,7 +180,7 @@ body{
     right:0;
     width:55%;
     height:100%;
-    background: #eae1d3;
+    background: #efe7db;
     clip-path: polygon(100% 0, 0 100%, 100% 100%);
     z-index: 2;
 }
@@ -191,13 +192,13 @@ body{
     top:0;
     left:0;
     width:100%;
-    height:55%;
-    background: #ece3d5;
+    height:56%;
+    background: #f4ece1;
     clip-path: polygon(0 0, 100% 0, 50% 100%);
     transform-origin: top center;
     z-index: 5;
-    transition: transform 1.2s cubic-bezier(.77,0,.18,1);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.04);
+    transition: transform 1.3s cubic-bezier(.77,0,.18,1);
+    border-bottom: 1px solid rgba(150,120,100,0.1);
 }
 
 .envelope.open .flap{
@@ -209,22 +210,22 @@ body{
 
 .wax-seal{
     position:absolute;
-    z-index:20;
-    width:72px;
-    height:72px;
+    z-index:25;
+    width:74px;
+    height:74px;
     border-radius:50%;
     left:50%;
-    top:52%;
+    top:51%;
     transform:translate(-50%,-50%);
-    background: radial-gradient(circle at 35% 30%, #f7e3af, #d4af37 60%, #aa8218);
-    box-shadow: 0 6px 15px rgba(65,45,15,0.25), inset 2px 2px 4px rgba(255,255,255,0.5);
+    background: radial-gradient(circle at 35% 30%, #ffefb8, #e0be43 55%, #9c7512);
+    box-shadow: 0 6px 18px rgba(70,50,10,0.3), inset 2px 2px 5px rgba(255,255,255,0.6);
     display:flex;
     align-items:center;
     justify-content:center;
-    color:#5a430c;
+    color:#4a3505;
     font-family:'Cormorant Garamond', serif;
     font-weight: 600;
-    font-size:32px;
+    font-size: 34px;
     transition: opacity .4s ease, transform .5s ease;
 }
 
@@ -232,28 +233,29 @@ body{
     content:"";
     position:absolute;
     inset:6px;
-    border:1px solid rgba(90,67,12,0.35);
+    border:1px solid rgba(74,53,5,0.35);
     border-radius:50%;
 }
 
 .envelope.open .wax-seal{
     opacity:0;
-    transform:translate(-50%,-50%) scale(0.5);
+    transform:translate(-50%,-50%) scale(0.4);
     pointer-events: none;
 }
 
 /* open hint text */
 
 .open-hint{
-    margin-top:30px;
+    margin-top: 32px;
     font-family:'Bad Script',cursive;
-    font-size:24px;
-    color:#754b46;
-    animation:breathe 2.5s infinite;
+    font-size: 24px;
+    color: #6b4540;
+    animation: breathe 2.5s infinite;
+    text-align: center;
 }
 
 @keyframes breathe{
-    0%,100%{opacity:.55}
+    0%,100%{opacity:.5}
     50%{opacity:1}
 }
 
@@ -675,10 +677,9 @@ function openEnvelope() {
     setTimeout(() => {
         intro.classList.add('hide');
         main.classList.add('show');
-    }, 1100);
+    }, 1200);
 }
 
-// Language translation dictionary
 const translations = {
     hy: {
         cardSub: "Հարսանեկան Հրավեր",
